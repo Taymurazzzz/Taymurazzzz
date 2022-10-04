@@ -10,7 +10,21 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-    # PUT YOUR CODE HERE
+    s = 'abcdefghijklmnopqrstuvwxyz'
+    f = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for i in range(len(plaintext)):
+        if plaintext[i].isalpha() == True:
+            if plaintext[i] in s and keyword[i] in s:
+                keyword += keyword
+                h = s[(s.find(plaintext[i]) + s.find(keyword[i])) % 26]
+                ciphertext += h
+            if plaintext[i] in f and keyword[i] in f:
+                keyword += keyword
+                h = f[(f.find(plaintext[i]) + f.find(keyword[i])) % 26]
+                ciphertext += h
+        else:
+            ciphertext += plaintext[i]
+
     return ciphertext
 
 
@@ -26,5 +40,18 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
-    # PUT YOUR CODE HERE
+    s = 'abcdefghijklmnopqrstuvwxyz'
+    f = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for i in range(len(ciphertext)):
+        if ciphertext[i].isalpha() == True:
+            if ciphertext[i] in s and keyword[i] in s:
+                keyword += keyword
+                h = s[(s.find(ciphertext[i]) - s.find(keyword[i])) % 26]
+                plaintext += h
+            if ciphertext[i] in f and keyword[i] in f:
+                keyword += keyword
+                h = f[(f.find(ciphertext[i]) - f.find(keyword[i])) % 26]
+                plaintext += h
+        else:
+            plaintext += ciphertext[i]
     return plaintext
