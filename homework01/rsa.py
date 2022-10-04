@@ -50,7 +50,6 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     """
     for i in range(1000):
         if i * e % phi == 1:
-            d = i
             break
     return d
 
