@@ -14,8 +14,8 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ''
     """
     ciphertext = ""
-    s = 'abcdefghijklmnopqrstuvwxyz'
-    f = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    s = "abcdefghijklmnopqrstuvwxyz"
+    f = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(plaintext)):
         if plaintext[i].isalpha() == True:
             if plaintext[i] in s:
@@ -43,8 +43,8 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-    s = 'abcdefghijklmnopqrstuvwxyz'
-    f = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    s = "abcdefghijklmnopqrstuvwxyz"
+    f = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha() == True:
             if ciphertext[i] in s:
