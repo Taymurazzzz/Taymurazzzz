@@ -14,6 +14,8 @@ def is_prime(n: int) -> bool:
     False
     """
     if n < 4:
+        if n == 1:
+            return False
         return True
     else:
         if n % 2 == 0:
