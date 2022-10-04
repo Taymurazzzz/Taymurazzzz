@@ -10,8 +10,8 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-    s = 'abcdefghijklmnopqrstuvwxyz'
-    f = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    s = "abcdefghijklmnopqrstuvwxyz"
+    f = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(plaintext)):
         if plaintext[i].isalpha() == True:
             if plaintext[i] in s and keyword[i] in s:
@@ -40,8 +40,8 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
-    s = 'abcdefghijklmnopqrstuvwxyz'
-    f = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    s = "abcdefghijklmnopqrstuvwxyz"
+    f = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha() == True:
             if ciphertext[i] in s and keyword[i] in s:
