@@ -45,11 +45,11 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha() == True:
             if ciphertext[i] in s and keyword[i] in s:
-                keyword += keyword
+                keyword += keyword * len(ciphertext)
                 h = s[(s.find(ciphertext[i]) - s.find(keyword[i])) % 26]
                 plaintext += h
             if ciphertext[i] in f and keyword[i] in f:
-                keyword += keyword
+                keyword += keyword * len(ciphertext)
                 h = f[(f.find(ciphertext[i]) - f.find(keyword[i])) % 26]
                 plaintext += h
         else:
