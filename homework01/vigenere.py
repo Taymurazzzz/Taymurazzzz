@@ -15,12 +15,11 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     for i in range(len(plaintext)):
         if plaintext[i].isalpha() == True:
             if plaintext[i] in s and keyword[i] in s:
-                keyword += keyword
-                h = s[(s.find(plaintext[i]) + s.find(keyword[i])) % 26]
+                h = s[(s.find(plaintext[i]) + s.find(keyword[i % len(keyword)])) % 26]
                 ciphertext += h
             if plaintext[i] in f and keyword[i] in f:
                 keyword += keyword
-                h = f[(f.find(plaintext[i]) + f.find(keyword[i])) % 26]
+                h = f[(f.find(plaintext[i]) + f.find(keyword[i % len(keyword)])) % 26]
                 ciphertext += h
         else:
             ciphertext += plaintext[i]
@@ -45,12 +44,11 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha() == True:
             if ciphertext[i] in s and keyword[i] in s:
-                keyword += keyword * len(ciphertext)
-                h = s[(s.find(ciphertext[i]) - s.find(keyword[i])) % 26]
+                h = s[(s.find(ciphertext[i]) - s.find(keyword[i % len(keyword)])) % 26]
                 plaintext += h
             if ciphertext[i] in f and keyword[i] in f:
                 keyword += keyword * len(ciphertext)
-                h = f[(f.find(ciphertext[i]) - f.find(keyword[i])) % 26]
+                h = f[(f.find(ciphertext[i]) - f.find(keyword[i % len(keyword)])) % 26]
                 plaintext += h
         else:
             plaintext += ciphertext[i]
