@@ -24,7 +24,6 @@ def is_prime(n: int) -> bool:
             return True
 
 
-
 def gcd(a: int, b: int) -> int:
     """
     Euclid's algorithm for determining the greatest common divisor.
@@ -52,8 +51,6 @@ def multiplicative_inverse(e: int, phi: int) -> int:
             d = i
             break
     return d
-
-
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
