@@ -21,7 +21,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
                 h = s[(s.find(plaintext[i]) + shift) % 26]
                 ciphertext += h
             if plaintext[i] in s.upper():
-                h = s[(s.find(plaintext[i]) + shift) % 26].upper()
+                h = s[(s.find(plaintext[i].lower()) + shift) % 26].upper()
                 ciphertext += h
         else:
             ciphertext += plaintext[i]
@@ -49,7 +49,7 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
                 h = s[(s.find(ciphertext[i]) - shift) % 26]
                 plaintext += h
             if ciphertext[i] in s.upper():
-                h = s[(s.find(ciphertext[i]) - shift) % 26].upper()
+                h = s[(s.find(ciphertext[i].lower()) - shift) % 26].upper()
                 plaintext += h
         else:
             plaintext += ciphertext[i]
