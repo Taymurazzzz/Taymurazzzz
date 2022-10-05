@@ -15,14 +15,13 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     ciphertext = ""
     s = "abcdefghijklmnopqrstuvwxyz"
-    f = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(plaintext)):
-        if plaintext[i].isalpha() == True:
+        if plaintext[i].isalpha():
             if plaintext[i] in s:
                 h = s[(s.find(plaintext[i]) + shift) % 26]
                 ciphertext += h
-            if plaintext[i] in f:
-                h = f[(f.find(plaintext[i]) + shift) % 26]
+            if plaintext[i] in s.upper():
+                h = s[(s.find(plaintext[i]) + shift) % 26].upper()
                 ciphertext += h
         else:
             ciphertext += plaintext[i]
@@ -44,15 +43,14 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
     plaintext = ""
     s = "abcdefghijklmnopqrstuvwxyz"
-    f = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(ciphertext)):
-        if ciphertext[i].isalpha() == True:
-            if ciphertext[i] in s:
-                h = s[(s.find(ciphertext[i]) - shift) % 26]
-                plaintext += h
-            if ciphertext[i] in f:
-                h = f[(f.find(ciphertext[i]) - shift) % 26]
-                plaintext += h
+        if ciphertext[i].isalpha():
+            if plaintext[i] in s:
+                h = s[(s.find(plaintext[i]) - shift) % 26]
+                ciphertext += h
+            if plaintext[i] in s.upper():
+                h = s[(s.find(plaintext[i]) - shift) % 26].upper()
+                ciphertext += h
         else:
             plaintext += ciphertext[i]
     return plaintext
