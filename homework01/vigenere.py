@@ -24,7 +24,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
                 if keyword[i % len(keyword)] in s:
                     h = s[
                         (s.find(plaintext[i].lower()) + s.find(keyword[i % len(keyword)])) % 26
-                    ].upper
+                    ].upper()
                     ciphertext += h
                 if keyword[(i % len(keyword))] in s.upper():
                     h = s[
