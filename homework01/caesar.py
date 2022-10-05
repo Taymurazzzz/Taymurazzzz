@@ -45,12 +45,12 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     s = "abcdefghijklmnopqrstuvwxyz"
     for i in range(len(ciphertext)):
         if ciphertext[i].isalpha():
-            if plaintext[i] in s:
-                h = s[(s.find(plaintext[i]) - shift) % 26]
-                ciphertext += h
-            if plaintext[i] in s.upper():
-                h = s[(s.find(plaintext[i]) - shift) % 26].upper()
-                ciphertext += h
+            if ciphertext[i] in s:
+                h = s[(s.find(ciphertext[i]) - shift) % 26]
+                plaintext += h
+            if ciphertext[i] in s.upper():
+                h = s[(s.find(ciphertext[i]) - shift) % 26].upper()
+                plaintext += h
         else:
             plaintext += ciphertext[i]
     return plaintext
