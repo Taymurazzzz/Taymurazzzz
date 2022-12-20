@@ -5,8 +5,7 @@ import community as community_louvain
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
-
-from vkapi.friends import get_friends, get_mutual
+from vkapi.friends import get_mutual
 
 
 def ego_network(
@@ -18,7 +17,34 @@ def ego_network(
     :param user_id: Идентификатор пользователя, для которого строится граф друзей.
     :param friends: Идентификаторы друзей, между которыми устанавливаются связи.
     """
-    pass
+    # graph = {}
+    # print(friends)
+    # for friend_id in tqdm(friends):
+    #     print(friend_id)
+    #     graph[friend_id] = get_friends_id(get_friends(friend_id))
+    # g = nx.Graph(directed=False)
+    # for i in graph:
+    #     g.add_node(i)
+    #     if graph[i] != None:
+    #         for j in graph[i]:
+    #             if i != j and i in friends and j in friends:
+    #                 g.add_edge(i, j)
+    # pos = nx.spring_layout(g)
+    # nx.draw_networkx_nodes(g, pos, node_size=20)
+    # nx.draw_networkx_edges(g, pos)
+    # plt.show()
+    graph = []
+    mutual_list = get_mutual(target_uids=friends)
+    for item in mutual_list:
+        assert isinstance(item, dict)
+        node = item["id"]
+        for friend_id in item["common_friends"]:
+            graph.append((node, friend_id))
+
+    return graph
+
+
+# print(ego_network(293311193, get_friends_id(get_friends(52104206))))
 
 
 def plot_ego_network(net: tp.List[tp.Tuple[int, int]]) -> None:
@@ -26,16 +52,6 @@ def plot_ego_network(net: tp.List[tp.Tuple[int, int]]) -> None:
     graph.add_edges_from(net)
     layout = nx.spring_layout(graph)
     nx.draw(graph, layout, node_size=10, node_color="black", alpha=0.5)
-    plt.title("Ego Network", size=15)
-    plt.show()
-
-
-def plot_communities(net: tp.List[tp.Tuple[int, int]]) -> None:
-    graph = nx.Graph()
-    graph.add_edges_from(net)
-    layout = nx.spring_layout(graph)
-    partition = community_louvain.best_partition(graph)
-    nx.draw(graph, layout, node_size=25, node_color=list(partition.values()), alpha=0.8)
     plt.title("Ego Network", size=15)
     plt.show()
 
