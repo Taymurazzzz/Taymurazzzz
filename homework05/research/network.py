@@ -9,8 +9,8 @@ from vkapi.friends import get_mutual_for_network
 
 
 def ego_network(
+    friends: tp.List[int],
     user_id: tp.Optional[int] = None,
-    friends: tp.List[int] = None,
 ) -> tp.List[tp.Tuple[int, int]]:
     """
     Построить эгоцентричный граф друзей.
