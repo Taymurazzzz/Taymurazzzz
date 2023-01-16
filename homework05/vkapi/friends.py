@@ -16,7 +16,7 @@ class FriendsResponse:
 
 def get_friends(
     user_id: int, count: int = 5000, offset: int = 0, fields: tp.Optional[tp.List[str]] = None
-) -> FriendsResponse:
+) -> FriendsResponse | None:
     """
     Получить список идентификаторов друзей пользователя или расширенную информацию
     о друзьях пользователя (при использовании параметра fields).
@@ -117,9 +117,8 @@ def get_friends_id(friends):
 
 
 def get_mutual_for_network(
+    target_uids: tp.List[int],
     source_uid: tp.Optional[int] = None,
-    target_uid: tp.Optional[int] = None,
-    target_uids: tp.List[int] = None,
     order: str = "",
     count: tp.Optional[int] = None,
     offset: int = 0,
@@ -140,16 +139,13 @@ def get_mutual_for_network(
     access_token = config.VK_CONFIG["access_token"]
     res = []
 
-    if target_uids is None:
-        target_uids = [target_uid]
     for i in range(0, len(target_uids), 100):
         res += session.get(
             "friends.getMutual",
             source_uid=source_uid,
-            target_uid=target_uid,
             target_uids=target_uids,
             order=order,
-            count="name",
+            count=count,
             offset=offset + i,
             v=5.131,
             access_token=access_token,
