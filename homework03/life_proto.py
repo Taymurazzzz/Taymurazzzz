@@ -16,7 +16,7 @@ class GameOfLife:
         self.width = width
         self.height = height
         self.cell_size = cell_size
-
+        self.grid = self.create_grid(randomize=True)
         # Устанавливаем размер окна
         self.screen_size = width, height
         # Создание нового окна
