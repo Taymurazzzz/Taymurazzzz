@@ -16,7 +16,6 @@ class GameOfLife:
         self.width = width
         self.height = height
         self.cell_size = cell_size
-        self.grid = self.create_grid(randomize=True)
         # Устанавливаем размер окна
         self.screen_size = width, height
         # Создание нового окна
@@ -25,7 +24,7 @@ class GameOfLife:
         # Вычисляем количество ячеек по вертикали и горизонтали
         self.cell_width = self.width // self.cell_size
         self.cell_height = self.height // self.cell_size
-
+        self.grid = self.create_grid(randomize=True)
         # Скорость протекания игры
         self.speed = speed
 
