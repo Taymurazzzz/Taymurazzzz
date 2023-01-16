@@ -5,11 +5,11 @@ import community as community_louvain
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
-from vkapi.friends import get_mutual
+from vkapi.friends import get_mutual_for_network
 
 
 def ego_network(
-    user_id: tp.Optional[int] = None, friends: tp.Optional[tp.List[int]] = None
+    user_id: tp.Optional[int] = None, friends: tp.List[int] = None,
 ) -> tp.List[tp.Tuple[int, int]]:
     """
     Построить эгоцентричный граф друзей.
@@ -34,12 +34,10 @@ def ego_network(
     # nx.draw_networkx_edges(g, pos)
     # plt.show()
     graph = []
-    mutual_list = get_mutual(target_uids=friends)
-    for item in mutual_list:
-        assert isinstance(item, dict)
-        node = item["id"]
-        for friend_id in item["common_friends"]:
-            graph.append((node, friend_id))
+    mutual = get_mutual_for_network(source_uid=friends[0], target_uids=friends)
+    for friend in mutual:
+        for uid in friend["common_friends"]:
+            graph.append((friend["id"], uid))
 
     return graph
 
