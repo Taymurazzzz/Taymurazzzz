@@ -3,6 +3,7 @@ import time
 import typing as tp
 
 import requests
+
 from vkapi import config
 
 QueryParams = tp.Optional[tp.Dict[str, tp.Union[str, int]]]
