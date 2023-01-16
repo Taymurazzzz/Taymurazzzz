@@ -16,7 +16,7 @@ class FriendsResponse:
 
 def get_friends(
     user_id: int, count: int = 5000, offset: int = 0, fields: tp.Optional[tp.List[str]] = None
-) -> FriendsResponse | None:
+) -> FriendsResponse:
     """
     Получить список идентификаторов друзей пользователя или расширенную информацию
     о друзьях пользователя (при использовании параметра fields).
@@ -37,12 +37,12 @@ def get_friends(
         "access_token": access_token,
         "v": 5.131,
     }
-    try:
-        req = requests.get("https://api.vk.com/method/friends.get", params).json()["response"]
-    except KeyError:
-        return None
-    else:
-        return FriendsResponse(req["count"], req["items"])
+    # try:
+    req = requests.get("https://api.vk.com/method/friends.get", params).json()["response"]
+    # except KeyError:
+    #     return None
+    # else:
+    return FriendsResponse(req["count"], req["items"])
 
 
 # print(get_friends(52104206))
