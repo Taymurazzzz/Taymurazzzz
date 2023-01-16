@@ -1,3 +1,5 @@
+import datetime as dt
+import statistics
 import typing as tp
 
 from vkapi.friends import get_friends
@@ -14,7 +16,7 @@ def age_predict(user_id: int) -> tp.Optional[float]:
     """
     age = 0
     friend_ages = []
-    f = get_friends(user_id)
+    f = get_friends(user_id).items
     for i in range(0, len(f)):
         try:
             friend_ages.append(f[i]["bdate"].split(".")[2])
@@ -25,10 +27,7 @@ def age_predict(user_id: int) -> tp.Optional[float]:
     for j in range(len(friend_ages)):
         age += int(friend_ages[j])
     try:
-        age = 2022 - age // len(friend_ages)
+        age = 2023 - age // len(friend_ages)
     except ZeroDivisionError:
         return None
     return age
-
-
-# print(age_predict(195797232))
