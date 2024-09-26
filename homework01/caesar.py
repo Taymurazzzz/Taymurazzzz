@@ -4,7 +4,6 @@ import typing as tp
 def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     Encrypts plaintext using a Caesar cipher.
-
     >>> encrypt_caesar("PYTHON")
     'SBWKRQ'
     >>> encrypt_caesar("python")
@@ -15,14 +14,24 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ''
     """
     ciphertext = ""
-    # PUT YOUR CODE HERE
+    s = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(len(plaintext)):
+        if plaintext[i].isalpha():
+            if plaintext[i] in s:
+                h = s[(s.find(plaintext[i]) + shift) % 26]
+                ciphertext += h
+            if plaintext[i] in s.upper():
+                h = s[(s.find(plaintext[i].lower()) + shift) % 26].upper()
+                ciphertext += h
+        else:
+            ciphertext += plaintext[i]
+
     return ciphertext
 
 
 def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
     Decrypts a ciphertext using a Caesar cipher.
-
     >>> decrypt_caesar("SBWKRQ")
     'PYTHON'
     >>> decrypt_caesar("sbwkrq")
@@ -33,7 +42,17 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-    # PUT YOUR CODE HERE
+    s = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(len(ciphertext)):
+        if ciphertext[i].isalpha():
+            if ciphertext[i] in s:
+                h = s[(s.find(ciphertext[i]) - shift) % 26]
+                plaintext += h
+            if ciphertext[i] in s.upper():
+                h = s[(s.find(ciphertext[i].lower()) - shift) % 26].upper()
+                plaintext += h
+        else:
+            plaintext += ciphertext[i]
     return plaintext
 
 
